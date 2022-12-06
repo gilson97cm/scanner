@@ -1,0 +1,192 @@
+$(document).ready(function() {
+  
+  /* MENU 2 LIVELLI */
+  
+  $('.sidebar .nav .nav-item').on('click', function() {
+      $(this).siblings('.nav').toggleClass('nav-closed');                                                            
+                                  });
+  
+  /* SLIDER */
+
+  /* Variabile quantità di slider aperti */
+  var sliderNumber = 0;
+
+  /* VECCHIO NON PIU' USATO: Livello scrolling finestra principale*/
+ /* var scrollfromTop; */
+
+  /* EVENTO AL CLICK DEL PULSANTE CON SLIDER */
+  $("[slider-activator]").click(function() {
+
+    /*
+	VECCHIO NON PIU' USATO	
+	AZIONE SU BODY: controllo sul numero di slider aperti SE E' 0 aggiunge classe al Body > AZIONE = rende il body 'fixed' e traccia livello di scroll del body
+        if (sliderNumber == 0) {    
+      scrollfromTop = $(window).scrollTop();
+      $("body").addClass("js-slider-open");
+    } */
+
+
+    /* APERTURA SLIDER E FOCUS recupera l'ID di "slider-activator" del pulsante e aggiunge la class js-active al rispettivo slider (con lo stesso ID) 
+    
+    */
+
+    var sliderActive = $(this).attr("slider-activator");
+	
+	/* ATTIVATORE chiusura tutti gli Slider da elemento cliccabile */
+ 	if (sliderActive == 'close-all') {
+	
+	  /* Chiusura di tutti gli Slider */
+	$(".slider-wrapper").removeClass("js-active");
+	
+	   /*  Aggiorna il contatore degli slider aperti   */
+    sliderNumber = 0 ;
+	
+	} 
+	
+		/* ATTIVATORE chiusura Slider in primo piano da elemento cliccabile */
+	 	else if (sliderActive == 'close-this') {
+	
+	  /* Chiusura di questo Slider */
+	$(this).parents(".slider-wrapper").removeClass("js-active");
+	
+	   /*  Aggiorna il contatore degli slider aperti   */
+    sliderNumber = sliderNumber -1 ;
+	
+	} 
+	
+	
+
+    /* se lo slider invocato non era già aperto */
+    else if (!$("#" + sliderActive).hasClass("js-active")) {
+	
+	 /*  Aggiorna il contatore degli slider aperti   */
+      sliderNumber = sliderNumber + 1;
+
+      $("#" + sliderActive)
+        .hide()
+        .appendTo(".slider-group")
+        .fadeIn()
+        .delay(0)
+        .queue(function() {
+          $(this)
+            .addClass("js-active")
+            .dequeue();
+        });
+      /* Controlla se lo slider da aprire è già aperto o se è già in primo piano (ovvero l'ultimo della lista) */
+    } else if (sliderNumber > 1 && !$("#" + sliderActive).is(":last-child")) {
+      /* Allora RIPORTA SLIDER GIA APERTO ON TOP */
+
+
+      /* traccia livello di scroll dello slider */
+     scrollSliderFromTop = $(
+        "#" + sliderActive + " .slider-content"
+      ).scrollTop(); 
+
+      $(".slider-group")
+        .find("#" + sliderActive)
+        .hide()
+        .appendTo(".slider-group")
+        .fadeIn();		
+	 $("#" + sliderActive + " .slider-content").scrollTop(scrollSliderFromTop); 
+    }
+  });
+
+  /* CHIUSURA AL CLICK FUORI DALLO SLIDER ora solo per quelli con classe specifica */
+  $(".slider-wrapper.js-slider-close-outside").on("click", function(e) {
+  
+  if (e.target !== this) {
+  
+return;
+  
+  }
+  
+  else {   
+  
+  /* Chiusura x click SOLO sullo .slider-wrapper */
+  $(this).removeClass("js-active");
+  
+   /*  Aggiorna il contatore degli slider aperti   */
+    sliderNumber = sliderNumber - 1;
+  
+  }
+
+  });
+  
+  
+    /* CHIUSURA SU ICONA CLOSE */
+  $(".slider-header-close").on("click", function() {
+  
+    $(this).parents('.slider-wrapper').removeClass("js-active");
+
+		 		
+ /*  Aggiorna il contatore degli slider aperti   */
+
+    sliderNumber = sliderNumber - 1;
+
+  });
+
+  /* STOP PROPAGAZIONE CLICK SU CORPO DELLO SLIDER */
+/*   $(".slider").on("click", function(event) {
+    event.stopPropagation();
+  }); */
+
+  $(".slider-header-close").on("click", function() {
+  
+
+  
+  /* Rimozione classe "js-active" con spostamento elemento */
+    $(this)
+      .parents(".slider-wrapper")
+        .hide()
+        .prependTo(".slider-group")
+        .fadeIn()
+        .delay(0)
+        .queue(function() {
+          $(this)
+            .removeClass("js-active")
+            .dequeue();
+        });
+
+		 /*  Aggiorna il contatore degli slider aperti   */
+		 
+    sliderNumber = sliderNumber - 1;
+
+ });
+
+  
+  
+  
+  /* MENU SIDEBAR */
+
+  /* MENU-RIGHT OPENING/CLOSING */
+  $(".sidebar-switcher").on("click", function() {
+    $("body").toggleClass("js-menu-is-open");
+  });
+
+  /* MENU-RIGHT ONRESIZE-LOAD */
+
+  var windowWidth = $(".header").width();
+
+  if ($(".header").width() <= 1000) {
+    $("body").removeClass("js-menu-is-open");
+  } else {
+    $("body").addClass("js-menu-is-open");
+  }
+
+  /* Resize Event */
+  $(window).resize(function() {
+    /* richiama funzione per altezza tab sticky 
+  set_heights();*/
+
+    /* Funzioni del menu on resize */
+    if ($(".header").width() != windowWidth) {
+      windowWidth = $(".header").width();
+
+      if ($(".header").width() <= 1000) {
+        $("body").removeClass("js-menu-is-open");
+      } else {
+        $("body").addClass("js-menu-is-open");
+      }
+    }
+  });
+});

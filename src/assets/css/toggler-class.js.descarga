@@ -1,0 +1,27 @@
+$(document).ready(function() {
+
+ 
+  
+  $('[data-toggler-activate-id]').on( "click", function() {
+
+  
+  
+  var objId = $(this).attr('data-toggler-activate-id');
+  
+  var classToTog = $(this).attr('data-toggler-class');
+  
+  if ($(this).hasClass('btn-toggler-on')) {
+  
+   $(this).addClass('btn-toggler-off').removeClass('btn-toggler-on');
+   
+   } else {
+   
+   $(this).addClass('btn-toggler-on').removeClass('btn-toggler-off');
+   
+   }
+   
+   $('[data-toggler-target-id=' + objId +']').toggleClass(classToTog);
+  
+  });
+  
+});

@@ -1,1 +1,702 @@
-/* You can add global styles to this file, and also import other style files */
+/* BOOTSTRAP OVERRIDE */
+
+
+/* BADGE */
+
+.badge {
+    vertical-align: middle;
+}
+
+
+/* FORM FOCUS */
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.15rem rgb(13 110 253 / 25%) !important;
+}
+
+.form-select:focus {
+ 
+    box-shadow: 0 0 0 0.15rem rgb(13 110 253 / 25%) !important;
+}
+
+/* Checkbox e Radio Bootstrap standard */
+
+.form-check-input:checked {
+    background-color: #FF5722;
+    border-color: #FF8A65;
+}
+
+
+.form-check-input[type=checkbox]:indeterminate {
+    background-color: #FF5722;
+    border-color: #FF8A65;
+
+}
+
+.form-check-input:focus {
+    border-color: #FF8A65;
+    box-shadow: 0 0 0 0.25rem rgb(191 54 12 / 15%);
+}
+
+/* DROPDOWN with BUTTON DISABLED ICON */
+
+.dropdown-item:disabled .icon {
+    opacity:50%;
+}
+
+/* PLACEHOLDER */
+
+::-webkit-input-placeholder { /* Edge */
+    color: #BDBDBD !important;
+    font-style:italic !important;
+  }
+  
+  
+  ::placeholder {
+    color: #BDBDBD !important;
+    font-style:italic !important;
+  }
+
+/* DISABELD BUTTON OPACITY */
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    pointer-events: none;
+    opacity: .35;
+}
+
+/* VALIDATION */
+
+/* .form-control.is-valid, .was-validated .form-control:valid {
+    border-color: #28a745;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath fill='%2328a745' d='M26.109 8.844c0 0.391-0.156 0.781-0.438 1.062l-13.438 13.438c-0.281 0.281-0.672 0.438-1.062 0.438s-0.781-0.156-1.062-0.438l-7.781-7.781c-0.281-0.281-0.438-0.672-0.438-1.062s0.156-0.781 0.438-1.062l2.125-2.125c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l4.594 4.609 10.25-10.266c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l2.125 2.125c0.281 0.281 0.438 0.672 0.438 1.062z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Cpath fill='%23dc3545' d='M12 2c6.625 0 12 5.375 12 12s-5.375 12-12 12-12-5.375-12-12 5.375-12 12-12zM14 21.484v-2.969c0-0.281-0.219-0.516-0.484-0.516h-3c-0.281 0-0.516 0.234-0.516 0.516v2.969c0 0.281 0.234 0.516 0.516 0.516h3c0.266 0 0.484-0.234 0.484-0.516zM13.969 16.109l0.281-9.703c0-0.109-0.047-0.219-0.156-0.281-0.094-0.078-0.234-0.125-0.375-0.125h-3.437c-0.141 0-0.281 0.047-0.375 0.125-0.109 0.063-0.156 0.172-0.156 0.281l0.266 9.703c0 0.219 0.234 0.391 0.531 0.391h2.891c0.281 0 0.516-0.172 0.531-0.391z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+} */
+
+/* CUSTOM FILE INPUT SMALL */
+
+
+/* LINK DECORATION */
+
+a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #42A5F5;
+    text-decoration: none;
+}
+
+/* No tooltip su icone SVG */
+use {
+    pointer-events: none;
+}
+
+/* TAG STYLE */
+
+em, i {
+    font-style: italic;
+}
+
+ol, ul {
+    padding-left: 0;
+}
+
+small {
+    font-size: 80% !important;
+}
+
+/* PARAGRAPH LAST CHILD */
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* MARGIN BOTTOM 0 LAST CHILD */
+
+.margin-last-0:last-child {
+    margin-bottom:0 !important;
+    }
+
+/* OVERRIDE per  CAMPI INPUT tipo "DATE" su GOOGLE CHROME e browser derivati */
+
+input[type="date" i]::-webkit-calendar-picker-indicator,
+input[type="datetime-local" i]::-webkit-calendar-picker-indicator,
+input[type="month" i]::-webkit-calendar-picker-indicator,
+input[type="week" i]::-webkit-calendar-picker-indicator,
+input[type="time" i]::-webkit-calendar-picker-indicator
+ {
+    background-image:none !important;
+    position:absolute;
+    z-index:202;
+    cursor:pointer;
+    right:0;
+    top:0;
+    bottom:0;
+    width:40px; 
+    height:100%;
+    outline:none;
+}
+
+input[type="date"], input[type="datetime-local"],input[type="month"],input[type="week"] {
+ display:flex;   
+ justify-content:space-between;
+}
+
+
+
+input[type="date"]:after, input[type="datetime-local"]:after,input[type="month"]:after,input[type="week"]:after
+{
+    content:'';
+    display:inline-block;
+    cursor:pointer;
+    width: 2rem;
+    height:100%;
+   
+    background: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' id='calendar' viewBox='0 0 26 28'%3E%3Ctitle%3Ecalendar%3C/title%3E%3Cpath d='M2 26h4.5v-4.5h-4.5v4.5zM7.5 26h5v-4.5h-5v4.5zM2 20.5h4.5v-5h-4.5v5zM7.5 20.5h5v-5h-5v5zM2 14.5h4.5v-4.5h-4.5v4.5zM13.5 26h5v-4.5h-5v4.5zM7.5 14.5h5v-4.5h-5v4.5zM19.5 26h4.5v-4.5h-4.5v4.5zM13.5 20.5h5v-5h-5v5zM8 7v-4.5c0-0.266-0.234-0.5-0.5-0.5h-1c-0.266 0-0.5 0.234-0.5 0.5v4.5c0 0.266 0.234 0.5 0.5 0.5h1c0.266 0 0.5-0.234 0.5-0.5zM19.5 20.5h4.5v-5h-4.5v5zM13.5 14.5h5v-4.5h-5v4.5zM19.5 14.5h4.5v-4.5h-4.5v4.5zM20 7v-4.5c0-0.266-0.234-0.5-0.5-0.5h-1c-0.266 0-0.5 0.234-0.5 0.5v4.5c0 0.266 0.234 0.5 0.5 0.5h1c0.266 0 0.5-0.234 0.5-0.5zM26 6v20c0 1.094-0.906 2-2 2h-22c-1.094 0-2-0.906-2-2v-20c0-1.094 0.906-2 2-2h2v-1.5c0-1.375 1.125-2.5 2.5-2.5h1c1.375 0 2.5 1.125 2.5 2.5v1.5h6v-1.5c0-1.375 1.125-2.5 2.5-2.5h1c1.375 0 2.5 1.125 2.5 2.5v1.5h2c1.094 0 2 0.906 2 2z'%3E%3C/path%3E%3C/svg%3E") no-repeat center right !important;
+
+}
+input[type="time"]:after {
+    content:'';
+    display:inline-block;
+    cursor:pointer;
+    width: 2rem;
+    height: 100%; 
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='clock-o' viewBox='0 0 24 28'%3E%3Ctitle%3Eclock-o%3C/title%3E%3Cpath d='M14 8.5v7c0 0.281-0.219 0.5-0.5 0.5h-5c-0.281 0-0.5-0.219-0.5-0.5v-1c0-0.281 0.219-0.5 0.5-0.5h3.5v-5.5c0-0.281 0.219-0.5 0.5-0.5h1c0.281 0 0.5 0.219 0.5 0.5zM20.5 14c0-4.688-3.813-8.5-8.5-8.5s-8.5 3.813-8.5 8.5 3.813 8.5 8.5 8.5 8.5-3.813 8.5-8.5zM24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z'%3E%3C/path%3E%3C/svg%3E") no-repeat center right !important;
+
+}
+
+
+/* TOOLTIP BOOTSTRAP OVERRIDE COLORE BG+ARROW */
+
+.tooltip-inner {
+background:#455A64;    
+}
+
+.bs-tooltip-auto[x-placement^=top] .tooltip-arrow::before, .bs-tooltip-top .tooltip-arrow::before {
+   border-top-color:#455A64;  
+}
+
+.bs-tooltip-auto[x-placement^=bottom] .tooltip-arrow::before, .bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color:#455A64;  
+ }
+
+ .bs-tooltip-auto[x-placement^=left] .tooltip-arrow::before, .bs-tooltip-left .tooltip-arrow::before {
+    border-left-color:#455A64;  
+ }
+ 
+ .bs-tooltip-auto[x-placement^=right] .tooltip-arrow::before, .bs-tooltip-right .tooltip-arrow::before {
+     border-right-color:#455A64;  
+  }
+
+
+
+
+  /* IMAGE GALLERY CAROUSEL stile frecce NEXT PREV (ATTENZIONE I COLORI SONO INVERTITI DA UN "FILTER" */
+
+
+  .image-gallery .carousel-control-next-icon, .image-gallery .carousel-control-prev-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius:50%;
+    background-color:black;
+    background-origin: content-box;
+    border:5px solid black !important;
+  }
+
+/* POP-OVER DIMENSIONI */
+
+/* la versione standard è 267px */
+
+.popover-500px {
+    max-width: 500px !important;
+}
+
+/* DROPDOWN */
+
+/* DROPDOWN > No-caret */
+
+.no-caret.dropdown-toggle:after {
+    content: '';
+    border: 0;
+    margin: 0;
+}
+
+.dropdown-menu-xl {
+    min-width: 25rem !important;
+}
+
+/* DROPDOWN > Dividers */
+.dropdown-divider {
+    border-top:1px solid #ccc;
+}
+
+/* DROPDOWN > Colore icone active */
+
+.dropdown-item.active svg, .dropdown-item:active svg {
+    fill: #fff !important;
+}
+
+/* BOTTONI E FLEX */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    fill: white;
+    transition: all 0.3s ease;
+}
+
+.btn:not(.button-caret):not(.btn-expander):active {
+    top: 2px;
+}
+
+.btn:not(.button-caret):not(.btn-expander):active:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    border-radius: inherit;
+    /* per adattare l'animazione ad ogni stile di bordo */
+    animation-name: interaction-press;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+}
+
+@keyframes interaction-press {
+    from {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    to {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%);
+        width: 100%
+    }
+}
+
+/* DIMESIONI NORMAL° EXTRA SMALL */
+
+.btn-group-nr>.btn, .btn-nr {
+padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+} /* ° da usare solo dove si una classe di tipo "btn-x" senza la classe "btn" */
+
+
+.btn-group-xs>.btn, .btn-xs {
+    padding: .15rem .5rem;
+    font-size: .850rem;
+    border-radius: .2rem;
+}
+
+.btn-group-xxs>.btn, .btn-xxs {
+    padding: .10rem .5rem;
+    font-size: .825rem;
+    border-radius: .2rem;
+}
+
+
+/* BOTTONI DI SEZIONE */
+
+
+.btn-section {
+    background: linear-gradient(to bottom, #f5f5f5 35%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+
+.btn-section:hover {
+    color: #fff !important;
+    background: #0b5ed7 !important;
+    border-color: #0a58ca !important;
+
+}
+
+.btn-section:focus {
+box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%);
+}
+
+
+
+/* COLORI DEFAULT */
+
+button[class^="bg-"], button[class*=" bg-"] {
+    color: white;
+}
+
+button[class^="bg-"]:hover, button[class*=" bg-"]:hover {
+    color: white;
+    opacity: 0.8;
+}
+
+button[class^="bg-"]:focus, button[class*=" bg-"]:focus {
+    box-shadow: 0 0 0 0.2rem rgba(50, 50, 50, .1);
+}
+
+.button-caret:focus {
+    box-shadow: none !important;
+}
+
+.btn.rounded-circle {
+    padding: .375rem .375rem;
+}
+
+/* BUTTON EXPANDER  CON TESTO VARIABILE */
+
+.btn-expander.collapsed:before {
+    content: '' attr(data-close-text) '';
+}
+
+.btn-expander:before {
+    content: '' attr(data-open-text) '';
+}
+
+/* BUTTON TOGGLER/CLASSS  CON TESTO VARIABILE */
+
+.btn-toggler-off:after {
+    content: '' attr(data-off-text) '';
+}
+
+.btn-toggler-on:after {
+    content: '' attr(data-on-text) '';
+}
+
+/* SHADOWS CUSTOM */
+
+.shadow-custom-1 {
+    box-shadow: 1px 1px 3px 1px rgba(51, 51, 51, 0.2);
+}
+
+/* DIVIDER */
+
+.divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #e9ecef;
+}
+
+/* LISTE */
+
+.styled-square {
+    list-style: square;
+}
+
+.styled-square li  {
+    margin-left: 1.5rem;
+}
+
+.styled-disc {
+    list-style: disc;
+}
+
+.styled-disc li  {
+    margin-left: 1.5rem;
+}
+
+.styled-circle {
+    list-style: circle;
+}
+
+.styled-circle li {
+    margin-left: 1.5rem;
+}
+
+.styled-zebra li:nth-child(even) {
+    background: #e5e5e5;
+}
+
+/* LISTE NUMERATE */
+
+.styled-number-decimal {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.styled-number-roman {
+    list-style: upper-roman;
+    padding-left: 20px;
+}
+
+.styled-lower-alpha {
+    list-style: lower-alpha;
+    padding-left: 20px;
+}
+
+/* Lista Orizzontale + Sepratore */
+
+/*PIPE*/
+.h-pipe-separator li {
+  
+   display:flex;
+   align-items:center;
+    }
+
+.h-pipe-separator li:not(:last-child):after {
+content:'|';
+color:#666;
+font-size:1.2em;
+margin-left: 0.5rem;;
+}
+
+/*SLASH*/
+.h-slash-separator li {
+  
+    display:flex;
+    align-items:center;
+     }
+ 
+ .h-slash-separator li:not(:last-child):after {
+ content:'/';
+ color:#666;
+ font-size:1.2em;
+ margin-left: 0.5rem;;
+ }
+
+
+/* Special text */
+
+.text-special {
+    border: 1px dashed #ccc;
+    background: #e5e5e5;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+/* INDICATOR */
+
+.badge-indicator {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.indicator-xs {
+    padding: .125rem .25rem;
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
+.indicator-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.indicator-lg {
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/* RANGE SLIDER OVERRIDE ATTENZIONE: NON MODIFICARE SENZA AUTORIZZAZIONE */
+
+.slider {
+    flex: 1 1 auto;
+}
+
+.slider-selection {
+    background-color: #46c1fe;
+    background-image: -moz-linear-gradient(top, #52c5ff, #3abcfd);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#52c5ff), to(#3abcfd));
+    background-image: -webkit-linear-gradient(top, #52c5ff, #3abcfd);
+    background-image: -o-linear-gradient(top, #52c5ff, #3abcfd);
+    background-image: linear-gradient(to bottom, #52c5ff, #3abcfd);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#52c5ff', endColorstr='#3abcfd', GradientType=0);
+}
+
+/* ANIMAZIONI */
+
+/* classe comune */
+
+.animated {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+  user-select: none;
+}
+
+/* Inizializzatori */
+
+.tremble {
+    animation-name: tremble; 
+    animation-iteration-count: 2; 
+}
+
+.shake {
+    animation-name: shake; 
+    animation-iteration-count: 2; 
+}
+
+.bounceInRed { 
+    animation-name: bounceInRed; 
+    animation-iteration-count: 2;
+}
+
+.bounceInWhite { 
+    animation-name: bounceInWhite; 
+    animation-iteration-count: 2;
+}
+
+
+.pulsateWhite {
+  position:relative;
+}
+
+.pulsateWhite:after {
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  border:3px solid #ffffff;
+  border-radius:5px;
+  position:absolute;
+  top:0;
+  left:0;
+  animation:pulsate 1.8s ease-out infinite
+}
+
+.pulsateRed {
+  position:relative;
+}
+
+.pulsateRed:after {
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  border:3px solid #f44336;
+  border-radius:5px;
+  position:absolute;
+  top:0;
+  left:0;
+  animation:pulsate 1.8s ease-out infinite
+}
+
+
+.line-spinner {
+position:relative;
+overflow:hidden;
+  }
+
+.line-spinner:before{
+    display: block;
+    position: absolute;
+    content: "";
+    bottom:0;
+    left: -30%;
+    width: 100%;
+    height: 4px;
+    background-color: #009688;
+    -webkit-animation: line-spinner 2s linear infinite;
+    animation: line-spinner 2s linear infinite;
+  }
+
+
+/* Frame animazioni */
+
+@keyframes bounceInRed { 
+    0% { 
+        opacity: 0; 
+        transform: scale(.3);   
+      box-shadow:0px 0px 30px 20px rgba(244,67,54, 0.75);
+      background-color:inherit;
+    } 
+
+    50% { 
+        opacity: 1; 
+        transform: scale(1.30); 
+        background-color:#f44336;
+     
+    
+      
+    } 
+
+    70% { 
+        transform: scale(.9); 
+    
+    } 
+
+    100% { 
+        transform: scale(1); 
+     
+     
+    } 
+} 
+
+@keyframes bounceInWhite { 
+    0% { 
+        opacity: 0; 
+        transform: scale(.3);   
+      box-shadow:0px 0px 30px 20px rgba(244,67,54, 0.75);
+      background-color:inherit;
+    } 
+
+    50% { 
+        opacity: 1; 
+        transform: scale(1.30); 
+        background-color:#ffffff;
+      color:#333;
+     
+    
+      
+    } 
+
+    70% { 
+        transform: scale(.9); 
+      
+    } 
+
+    100% { 
+        transform: scale(1); 
+      
+     
+    } 
+} 
+
+
+@keyframes pulsate
+{0%{transform:scale(0.1,.1);opacity:.3}
+  50%{opacity:.8}
+  100%{transform:scale(1.0,1.2);opacity:0}
+}
+
+
+
+@keyframes shake {
+    0%, 100% {transform: translateX(0);} 
+    10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);} 
+    20%, 40%, 60%, 80% {transform: translateX(5px);} 
+ } 
+
+
+ @keyframes tremble {
+    0%, 100% {transform: rotate} 
+    10%, 30%, 50%, 70%, 90% {transform: rotate(-5deg)} 
+    20%, 40%, 60%, 80% {transform: rotate(5deg)} 
+ } 
+
+
+ @keyframes line-spinner {
+    from{left:-30%; width:30%;}
+    50% { width: 50%; }
+    to { left: 100%; width:60%; }
+  }

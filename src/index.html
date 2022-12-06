@@ -5,9 +5,85 @@
   <title>Scanner</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="./assets/css/reset.min.css">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/layout.css">
+  <link rel="stylesheet" href="./assets/css/input-elements.css">
+  <link rel="stylesheet" href="./assets/css/scanner.css">
+  <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+  <link rel="stylesheet" href="./assets/css/helper-class.css">
+  <style type="text/css">
+      /* @font-face {
+          font-family: Roboto;
+          src: url("chrome-extension://mcgbeeipk/melnpldkobichboakdfaeon/assets/css/Roboto-Regular.ttf");
+      } */
+  </style>
 </head>
 <body>
   <app-root></app-root>
+
+  <script src="./assets/css/jquery.min.js.descarga"></script>
+  <script src="./assets/css/bootstrap.bundle.min.js.descarga"></script>
+  <script src="./assets/css/bootstrap.esm.min.js.descarga"></script>
+
+  <script src="./assets/css/script.js.descarga"></script>
+  <script src="./assets/css/toggler-class.js.descarga"></script>
+
+  <script>
+      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+          return new bootstrap.Popover(popoverTriggerEl, {
+              container: '.body-wrapper'
+          }
+
+          )
+      })
+  </script>
+
+  <script>
+    var returnedSuggestion = ''
+    let editor, doc, cursor, line, pos
+    document.addEventListener("keydown", (event) => {
+        setTimeout(() => {
+            editor = event.target.closest('.CodeMirror');
+            if (editor) {
+                doc = editor.CodeMirror.getDoc()
+                cursor = doc.getCursor()
+                line = doc.getLine(cursor.line)
+                pos = { line: cursor.line, ch: line.length }
+                if (event.key == "Enter") {
+                    var query = doc.getRange({ line: Math.max(0, cursor.line - 10), ch: 0 }, { line: cursor.line, ch: 0 })
+                    window.postMessage({ source: 'getSuggestion', payload: { data: query } })
+                    //displayGrey(query)
+                }
+                else if (event.key == "ArrowRight") {
+                    acceptTab(returnedSuggestion)
+                }
+            }
+        }, 0)
+    })
+  
+    function acceptTab(text) {
+        if (suggestionDisplayed) {
+            doc.replaceRange(text, pos)
+            suggestionDisplayed = false
+        }
+    }
+    function displayGrey(text) {
+        var element = document.createElement('span')
+        element.innerText = text
+        element.style = 'color:grey'
+        var lineIndex = pos.line;
+        editor.getElementsByClassName('CodeMirror-line')[lineIndex].appendChild(element)
+        suggestionDisplayed = true
+    }
+    window.addEventListener('message', (event) => {
+        if (event.source !== window) return
+        if (event.data.source == 'return') {
+            returnedSuggestion = event.data.payload.data
+            displayGrey(event.data.payload.data)
+        }
+    })
+  </script>
 </body>
 </html>

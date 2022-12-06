@@ -1,0 +1,639 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&display=swap");
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* SCROLLBAR GENERALE */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height:10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f2f2f2; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #666666; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FF9800; 
+}
+
+/* FINE SCROLLBAR */
+
+html,
+body {
+  font-family: Roboto, sans-serif;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  max-width:1980px;
+  margin:0 auto;
+}
+
+/* aggiunto per utilizzo corretto tooltip bootstrap (ATTEZNIONE: è diverso in Angular) */
+.body-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  position:relative;
+  overflow:hidden;
+}
+
+.header {
+  flex: 0 0 auto; /* modificato: era 1 1 auto */
+  width: 100%;
+  max-height: 88px;
+  padding: 2.5px 10px;
+  background: #f5f5f5;
+  box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.55);
+     /* aggiunte di recente 25-10-2021 in test */
+     position: relative;
+     z-index: 1039;
+}
+
+.logo {
+
+  margin-left:-5px;
+  cursor:pointer;
+}
+
+.logo svg, .logo img {
+  width:auto;
+  height:100%;
+}
+
+
+/* MAIN_WRAPPER */
+
+.main-wrapper {
+position:relative;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  position:absolute; 
+ /* top: 148px; */ /* prima di modifica header dinamico */
+  flex: 0 0 auto;
+  width: 60px;
+  /* height: calc(100% - 148px); */ /* prima di modifica header dinamico */
+  background: #f5f5f5;
+  /* padding-bottom: 60px; tolto per eliminazione "Footer Switcher" */
+  display: flex;
+  flex-direction: column;
+  z-index: 1025;
+
+  top:0;
+  height:100%;
+
+  transition: width 0.3s ease;
+}
+
+.js-menu-is-open .sidebar {
+  width: 229px; /* attenzione problema spazio footer su Wizard: in fase di testing */
+
+}
+
+
+/* ombreggiaure aside*/
+.js-menu-is-open .sidebar:after {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    top:0;
+    bottom: 0;
+    right: 0px;
+    box-shadow: 0px 0px 0.5px 0.5px rgba(50, 50, 50, 0.1);
+    z-index: 1;
+    background: transparent;
+}
+
+.sidebar-switcher-wrapper {
+   /* position: absolute; */
+  /* top: -60px; */
+width:100%;
+  display: flex;
+  align-items:center;
+  background:#e5e5e5;
+   overflow:hidden;
+flex:0 0 auto;
+height:60px;
+}
+
+
+.sidebar-switcher {
+  flex: 0 0 auto;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  font-size: 16px;
+  background:#37474F;
+  padding: 5px;
+}
+
+.sidebar-switcher:hover {
+opacity:0.9;
+}
+
+
+.sidebar .nav {
+   overflow: hidden; 
+  border-bottom:5px solid #ccc;
+  border-top:5px solid #ccc;
+  display:block;
+  /* height:100%; */
+transform-origin: left top;
+  transition: transform 0.3s; 
+  transform: scaleY(1);
+}
+
+
+.sidebar .nav .nav {
+  border-bottom:2px solid #ccc;
+}
+
+.sidebar .nav .nav.nav-closed {
+border-top:0;
+border-bottom:0;
+height:0;
+transform: scaleY(0);
+transform-origin: left top;
+  transition: transform 0.3s;
+}
+
+ .js-menu-is-open .sidebar .nav {
+  overflow-y: auto;
+} 
+
+.sidebar .nav-item span {
+  color:#455A64;
+}
+
+.sidebar .nav-item svg {
+  fill:#455A64;
+}
+
+.sidebar .nav-item.active, .sidebar .nav-item:hover  {
+	   border-bottom:0;
+  background:#FF9800;
+}
+
+.sidebar .nav .nav .nav-item.active, .sidebar .nav .nav .nav-item:hover {
+	   border-bottom:0;
+  background:#FFB74D;
+}
+
+.sidebar .nav-item.active span, .sidebar .nav-item:hover span {
+  color:white;
+  fill:white !important;
+}
+
+.sidebar .nav-item.active svg, .sidebar .nav-item:hover svg {
+  fill:white !important;
+}
+
+
+
+.sidebar .nav .nav svg {
+margin-left:4px;
+}
+
+.sidebar .nav-item {
+  padding:6px 12px;
+  height:48px;
+  line-height:1.2em;
+  background:#e5e5e5;
+position:relative;
+}
+
+.sidebar .nav-item:active:before {
+content:'';
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:50%;
+border-radius:inherit; /* per adattare l'animazione ad ogni stile di bordo */
+	 animation-name:  interaction-menu-press;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+}
+
+@keyframes interaction-menu-press {
+  from {background:  linear-gradient(to right, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 100%);}
+  to {background: linear-gradient(to right, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%);width:100%}
+}
+
+.sidebar li .nav-item  {
+   border-bottom:1px dotted white;
+}
+
+.sidebar li:last-child .nav-item  {
+   border-bottom:0;
+}
+
+/* INDICATORE MENU MULTILIVELLO */
+
+
+.sidebar .nav-item.father:before {
+  content:'';   
+position:absolute;
+  left:0;
+  top:18px;
+  width: 0;
+height: 0;
+border-style: solid;
+border-width: 7px 0 7px 7px;
+  border-color:  transparent transparent transparent #455A64;
+}
+
+.sidebar .nav-item.active.father:before {
+  border-color:  transparent transparent transparent white;
+}
+
+/* MENU SECONDO LIVELLO */
+
+
+.sidebar .nav .nav .nav-item {
+  padding:6px 12px 6px 12px;
+  height:48px;
+  line-height:1.2em;
+  background:#f5f5f5; 
+  position:relative;
+}
+
+
+/* PROFILE */
+
+
+.js-menu-is-open .profile-buttons {
+position:absolute;
+bottom:0;
+display:flex;
+width:100%;
+}
+
+.js-menu-is-open .profile-buttons button:first-child {
+  border-right:1px solid #ccc;
+   border-bottom:1px solid transparent;
+  }
+
+  .js-menu-is-open .profile-buttons button {
+    /* background: rgba(33,150,243,0.8) !important; */
+    padding: .10rem .5rem !important;
+    max-width: 50%;
+	}
+
+    .js-menu-is-open .profile-buttons button:hover {
+      background:rgba(33,150,243,1) !important;
+      opacity:1;
+      }
+
+  .profile-buttons button:first-child {
+    border-bottom:1px solid #ccc;
+    }
+
+
+    /* PROFILE INFO */
+
+    .js-menu-is-open .profile-info {
+      overflow-y: auto;
+
+    }
+
+    .profile-info-text {
+      display:none;
+    }
+
+    .js-menu-is-open .profile-info-text {
+      display:block;
+   
+    }
+
+/* FINE SIDEBAR */
+
+.main {
+  flex: 1 1 auto;
+  height: 100%;   /* Trick per content child al 100% su IPAD  */
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  overflow:hidden; /* per ovviare problemi con wizard (sotto test) */
+}
+
+aside + .main {
+  margin-left: 60px;
+}
+
+.main-sticky-header,
+.main-sticky-footer {
+  flex: 0 0 auto;
+  min-height: 60px; 
+position:relative; /* Messo per Mega Menu: da verificare */
+}
+
+.content {
+  flex: 1 1 auto;
+  overflow: auto;
+  height:100%;
+   /* position:relative;  SPERIMENTALE: messo in origine per il Mega Menu poi implementato in modo diverso. Non sembra comunque dare problemi nei vari contesti quindi, se servisse, si pu� pensare di reinserirlo */
+}
+
+/* TAB FULL CONTENT */
+
+.tab-full {
+height:100%;
+}
+
+.tab-full .tab-pane {
+  height:100%;
+}
+
+
+/* STICKY FOOTER SWITCHER */
+
+.sticky-footer-switcher {
+  display: none;
+}
+
+.sticky-footer-switcher-controller {
+  position: absolute;
+  top:auto !important; /* per evitare il "top:2px" usato per lo stato :active delle animazioni degli elementi di input */
+  bottom: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border: 4px solid #f5f5f5;
+  border-radius: 50%;
+  margin-bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 1px 4px 0px rgba(50, 50, 50, 0.75);
+  background: radial-gradient(
+    ellipse at center,
+    #f5f6f6 25%,
+    #f5f5f5 25%,
+    #cccccc 75%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.sticky-footer-switcher:checked
+  + .sticky-footer-switcher-controller
+  + .main-footer {
+  bottom: 0px;
+  background-color: #999;
+}
+
+.sticky-footer-switcher + .sticky-footer-switcher-controller:after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23333' d='M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z'/%3E%3C/svg%3E");
+  height: 15px;
+  width: 15px;
+}
+
+.sticky-footer-switcher:checked + .sticky-footer-switcher-controller:after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23333' d='M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z'/%3E%3C/svg%3E");
+  height: 15px;
+  width: 15px;
+  fill: #333;
+}
+
+/* FOOTER SWITCH */
+
+.main-footer {
+  /*  position: -webkit-sticky; 
+  position: sticky; */
+  position: absolute;
+  bottom: -100%;
+  background-color: #cccccc;
+  min-height: 60px;
+  transition: 0.3s ease;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 300;
+}
+
+.controller-input {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.footer-functions {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 50px;
+  min-height: 50px;
+  /* background: rgba(189, 189, 189, 0.8); */
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  line-height: 1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1000;
+}
+
+.footer-switcher {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  line-height: 1em;
+  background: #333;
+  margin-bottom: 0;
+  border-radius: 50%;
+}
+
+.footer-switcher:after {
+  content: "...";
+}
+
+.footer-button {
+  background: rgba(189, 189, 189, 0.9);
+}
+
+.controller-input + .footer-functions .footer-button {
+  display: none;
+}
+
+.controller-input:checked + .footer-functions .footer-button {
+  flex: 1 1 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 10px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.controller-input:checked + .footer-functions .footer-switcher:after {
+  content: ".";
+}
+
+.controller-input:checked + .footer-functions {
+  width: calc(100% - 10px);
+}
+
+/* SLIDER */
+
+.slider-wrapper {
+  max-width: 1980px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 100%;
+  overflow: hidden;
+  transition: left 5s;
+  transition: background 0.3s ease 0.3s;
+  /* z-index: 200; */
+  z-index: 1054; /* modificato per sovrapposizione dello "sticky" su slider */
+}
+
+
+.js-active.slider-wrapper {
+  left: 0;
+  background: rgba(51, 51, 51, 0.8);
+}
+
+.slider-wrapper.js-active + .semi-overlay.js-active .slider {
+margin-top:50px;
+height: calc(100% - 50px);
+}
+
+
+.slider-wrapper .slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  right: 0;
+  width: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: left 0.3s ease;
+  flex:1 0 auto; /* Override per libreiria boostrap-slider dei range input */
+}
+
+.slider-wrapper.js-active .slider {
+  left: 60px;
+}
+
+
+
+
+.slider-header {
+  flex: 0 0 auto;
+  background: #607d8b;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  top: -50px;
+  transition: top 0.3s ease 0.3s;
+  padding: 10px;
+  color: white;
+}
+
+.js-active .slider-header {
+  top: 0;
+}
+
+.slider-header-close {
+  position: absolute;
+  top: 8px;
+  left: -30px;
+  width: 30px;
+  height: 30px;
+  background: #607d8b;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px 0 0 5px;
+}
+
+.slider-header-close button {
+  padding: 2px 0 0 0;
+}
+
+.slider-content {
+  flex: 1 1 auto;
+  background: white;
+  width: 100%;
+  overflow: auto;
+/*   padding: 1rem; */
+  height:100%;
+  
+  display:flex;
+  flex-direction:column;
+}
+
+
+
+.slider-content-sticky {
+  flex: 0 0 auto;
+/* overflow:hidden; Rimozzo per problemi overflow con elementi a tendina (possibile ripristino in caso di altre controindicazioni)*/
+
+}
+
+.slider-content-scroll {
+  flex: 1 1 auto;
+overflow-x:hidden;
+overflow-y:auto;
+
+}
+
+.js-active .slider-content {
+}
+
+.slider-footer {
+  flex: 1 0 auto;
+  background: #CFD8DC;
+  width: 100%;
+  position: relative;
+  min-height:50px;
+  bottom: -50px; /* per animazione: non toccare*/
+  transition: bottom 0.3s ease 0.3s;
+}
+
+.js-active .slider-footer {
+  bottom: 0; /* per animazione: non toccare*/
+}
+
+
+@media (min-width: 960px) {
+  .js-menu-is-open aside + .main {
+    margin-left: 229px;
+  }
+}
+

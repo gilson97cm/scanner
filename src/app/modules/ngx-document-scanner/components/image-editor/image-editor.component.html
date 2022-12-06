@@ -1,0 +1,45 @@
+
+<div class="scanner-component">
+  <div #imageContainer [ngStyle]="imageDivStyle">
+    <ng-container *ngIf="imageLoaded && mode === 'crop'">
+      <app-shape-outline #shapeOutline [color]="options.cropToolColor" [weight]="options.cropToolLineWeight"
+        [dimensions]="previewDimensions"></app-shape-outline>
+      <app-draggable-point #topLeft [pointOptions]="options.pointOptions" [startPosition]="{x: 0, y: 0}"
+        [limitRoles]="['top', 'left']" [container]="imageContainer"></app-draggable-point>
+      <app-draggable-point #topRight [pointOptions]="options.pointOptions"
+        [startPosition]="{x: previewDimensions.width, y: 0}" [limitRoles]="['top', 'right']"
+        [container]="imageContainer"></app-draggable-point>
+      <app-draggable-point #bottomLeft [pointOptions]="options.pointOptions"
+        [startPosition]="{x: 0, y: previewDimensions.height}" [limitRoles]="['bottom', 'left']"
+        [container]="imageContainer"></app-draggable-point>
+      <app-draggable-point #bottomRight [pointOptions]="options.pointOptions"
+        [startPosition]="{x: previewDimensions.width, y: previewDimensions.height}" [limitRoles]="['bottom', 'right']"
+        [container]="imageContainer"></app-draggable-point>
+    </ng-container>
+    <canvas #PreviewCanvas style="z-index: 5;"></canvas>
+  </div>
+
+  <div class="scanner-functions vstack gap-2" style="z-index: 10;">
+    <div *ngFor="let button of displayedButtons" [ngSwitch]="button.type">
+
+      <button *ngSwitchCase="'fab'" type="button" class=" btn btn-sm btn-{{ button.color }} p-1" [name]="button.name"
+        (click)="button.action()">
+        <span class="icon-sm">
+          <svg class="icon">
+            <use [attr.xlink:href]="button.icon"></use>
+          </svg>
+        </span>
+      </button>
+
+      <button *ngSwitchCase="'button'" type="button" class=" btn btn-sm btn-{{ button.color }} p-1" [name]="button.name"
+        (click)="button.action()">
+        <span class="icon-sm">
+          <svg class="icon">
+            <use [attr.xlink:href]="button.icon"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</div>
